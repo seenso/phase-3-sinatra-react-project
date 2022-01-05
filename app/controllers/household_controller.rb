@@ -27,8 +27,9 @@ class HouseholdController < Sinatra::Base
       Household.find(params[:id]).to_json(include: :pets)
     end
 
+    #Gets all users based off of household id
     get "/households/:id/users" do
-      User.find(params[:id]).to_json(include: :household)
+      Household.find(params[:id]).users.to_json
     end
 
   # Gets all the task data associated with a household via tasks (who the task is assigned to and which pet the task is for)
