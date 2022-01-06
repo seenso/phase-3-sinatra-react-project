@@ -5,10 +5,15 @@ User.destroy_all
 Pet.destroy_all
 Task.destroy_all
 
-10.times do
+house_names = ["Smith Family", "Li House", "Pet Paradise", "The Freemans", "Baty-Barr House", "So Animal Retreat", "The Hurley Feytser Cat Palace", "Casa de Snutz", "Our House", "Gamboa Family"]
+
+i = 0
+
+9.times do
     Household.create({
-        household_name: Faker::Dessert.variety
+        household_name: house_names[i]
         })
+    i = i + 1
 end
 
 20.times do
@@ -20,24 +25,24 @@ end
         })
 end
 
-100.times do
+30.times do
     Pet.create({
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        age: Faker::Number.between(from: 1, to: 50),
+        age: Faker::Number.between(from: 1, to: 10),
         species: Faker::Creature::Animal.name,
         household_id: Faker::Number.between(from: 1, to: 10)
         })
 end
 
-100.times do
+50.times do
     
     userid = Faker::Number.between(from: 1, to: 20)
 
     Task.create({
         user_id: userid,
         household_id: User.all.find(userid).household_id,
-        pet_id: Faker::Number.between(from: 1, to: 100),
+        pet_id: Faker::Number.between(from: 1, to: 30),
         task_name: Faker::Lorem.sentence(word_count: 3),
         task_due_date: Faker::Date.in_date_period,
         task_start_date: Faker::Date.in_date_period,
