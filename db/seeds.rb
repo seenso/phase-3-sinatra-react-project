@@ -9,7 +9,7 @@ house_names = ["Smith Family", "Li House", "Pet Paradise", "The Freemans", "Baty
 
 i = 0
 
-9.times do
+10.times do
     Household.create({
         household_name: house_names[i]
         })
