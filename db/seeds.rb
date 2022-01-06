@@ -48,7 +48,7 @@ task_frequency_arr = [1,7,30,365]
         pet_id: Faker::Number.between(from: 1, to: 30),
         task_name: Faker::Lorem.sentence(word_count: 3),
         task_due_date: last_day,
-        task_start_date: Faker::Date.between(from: '2022-01-01', to: '2022-12-31'),
+        task_start_date: recurring ? Faker::Date.between(from: '2022-01-01', to: '2022-12-31') : last_day,
         task_is_recurring: recurring,
         task_frequency: recurring ? task_frequency_arr.sample : 0,
         task_end_date: last_day,
