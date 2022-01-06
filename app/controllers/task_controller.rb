@@ -11,10 +11,14 @@ class TaskController < Sinatra::Base
   
     post "/tasks" do
       Task.create(
+        household_id: params[:household_id],
         user_id: params[:user_id],
         pet_id: params[:pet_id],
         task_name: params[:task_name],
         task_due_date: params[:task_due_date],
+        task_is_recurring: params[:task_is_recurring],
+        task_frequency: params[:task_frequency],
+        task_start_date: params[:task_start_date],
         task_end_date: params[:task_end_date],
         task_location: params[:task_location]
       ).to_json

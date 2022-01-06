@@ -43,7 +43,7 @@ class HouseholdController < Sinatra::Base
           }
         }
       )
-    end
+  end
 
   post "/households/:id/tasks" do
     Household.find(params[:id]).to_json(include: {
