@@ -16,6 +16,18 @@ class HouseholdController < Sinatra::Base
           }
         }
       )
+
+      # Household.find(params[:id]).order(tasks: :task_due_date).to_json(include: {
+      #   tasks: {
+      #     include: [
+      #       :pet,
+      #       :user
+      #       ]
+      #     }
+      #   }
+      # )
+
+      
     end
   
     get "/households/:id" do
@@ -24,7 +36,7 @@ class HouseholdController < Sinatra::Base
 
     # Gets all the pet data associated with a household
     get "/households/:id/pets" do
-      Household.find(params[:id]).pets.order(:first_name).to_json
+      Household.find(params[:id]).pets.to_json
     end
 
     #Gets all users based off of household id
@@ -34,15 +46,17 @@ class HouseholdController < Sinatra::Base
 
   # Gets all the task data associated with a household via tasks (who the task is assigned to and which pet the task is for)
   get "/households/:id/tasks" do
-      Household.find(params[:id]).to_json(include: {
-        tasks: {
-          include: [
-            :pet,
-            :user
-            ]
-          }
-        }
-      )
+      # Household.find(params[:id]).to_json(include: {
+      #   tasks: {
+      #     include: [
+      #       :pet,
+      #       :user
+      #       ]
+      #     }
+      #   }
+      # )
+
+      Task.where(household_id:params[:id]).order(:task_due_date).to_json(include: [:user, :pet, :household])
   end
 
   post "/households/:id/tasks" do
