@@ -17,7 +17,6 @@ i = 0
 end
 
 20.times do
-    
     User.create({
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
@@ -35,20 +34,24 @@ end
         })
 end
 
+task_frequency_arr = [1,7,30,365]
+
 50.times do
     
     userid = Faker::Number.between(from: 1, to: 20)
+    recurring = Faker::Boolean.boolean
+    last_day = Faker::Date.between(from: '2023-01-01', to: '2023-12-31')
 
     Task.create({
         user_id: userid,
         household_id: User.all.find(userid).household_id,
         pet_id: Faker::Number.between(from: 1, to: 30),
         task_name: Faker::Lorem.sentence(word_count: 3),
-        task_due_date: Faker::Date.in_date_period,
-        task_start_date: Faker::Date.in_date_period,
-        task_is_recurring: Faker::Boolean.boolean,
-        task_frequency: Faker::Number.between(from: 0, to: 365),
-        task_end_date: Faker::Date.in_date_period,
+        task_due_date: last_day,
+        task_start_date: Faker::Date.between(from: '2022-01-01', to: '2022-12-31'),
+        task_is_recurring: recurring,
+        task_frequency: recurring ? task_frequency_arr.sample : 0,
+        task_end_date: last_day,
         task_location: Faker::WorldCup.city
         })
 end
