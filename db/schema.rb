@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2022_01_05_181335) do
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "profile_pic"
     t.integer "household_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

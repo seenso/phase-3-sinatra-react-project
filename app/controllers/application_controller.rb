@@ -11,8 +11,7 @@ class ApplicationController < Sinatra::Base
     u = User.all.to_json
     p = Pet.all.to_json
     t = Task.all.to_json
-    # [h, u, p, t]
-    h
+    [h, u, p, t] # < not json format
   end
 
 end

@@ -13,7 +13,8 @@ class UserController < Sinatra::Base
       User.create(
         first_name: params[:first_name],
         last_name: params[:last_name],
-        household_id: params[:household_id]
+        household_id: params[:household_id],
+        profile_pic: params[:profile_pic]
       ).to_json
     end
   
